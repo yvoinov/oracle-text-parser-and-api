@@ -1,0 +1,136 @@
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'äæèðèíã');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 1 SYN's                                                                     
+SYN(1)=ËÅÂÅÐÅÄÆ                                                                 
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'âåêñåëü','default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 8 SYN's                                                                     
+SYN(1)=ÌÅÆÄÓÍÀÐÎÄÍÛÉ ÏÅÐÅÂÎÄÍÎÉ ÂÅÊÑÅËÜ                                         
+SYN(2)=ÏÅÐÅÂÎÄÍÎÉ ÂÅÊÑÅËÜ                                                       
+SYN(3)=ÒÐÀÒÒÀ                                                                   
+SYN(4)=ÇÀÅÌÍÎÅ ÏÈÑÜÌÎ                                                           
+SYN(5)=ÊÀÌÁÈÎ                                                                   
+SYN(6)=ÏÅÐÅÂÎÄÍÛÉ ÂÅÊÑÅËÜ                                                       
+SYN(7)=ÏÅÐÅÂÎÄÍÛÅ ÂÅÊÑÅËß                                                       
+SYN(8)=ÂÅÊÑÅËß                                                                  
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'ïðèçåìëåíèå (ðàêåòíàÿ òåõíèêà)','default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 1 SYN's                                                                     
+SYN(1)=ÏÎÑÀÄÊÀ (ÀÂÈÀÖÈß)                                                        
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'ñòàðò (ðàêåòíàÿ òåõíèêà)','default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 1 SYN's                                                                     
+SYN(1)=ÂÇËÅÒ (ÀÂÈÀÖÈß)                                                          
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'ñòàðò','default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 1 SYN's                                                                     
+SYN(1)=ÂÇËÅÒ (ÀÂÈÀÖÈß)                                                          
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'çåíèòíàÿ ðàêåòà','default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 1 SYN's                                                                     
+SYN(1)=ÇÅÍÈÒÍÛÅ ÐÀÊÅÒÛ                                                          
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_syn(xtab,'êóðåíèå','default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' SYN''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('SYN('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 2 SYN's                                                                     
+SYN(1)=ÒÀÁÀÊÎÊÓÐÅÍÈÅ                                                            
+SYN(2)=ÊÓÐÅÍÈÅ ÒÀÁÀÊÀ                                                           
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> spool off

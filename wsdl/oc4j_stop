@@ -1,0 +1,17 @@
+#!/usr/bin/sh
+
+#
+# OC4J shutdown/kill script
+# Version 1.0.0.5
+# Copyright (C) 2007,2009 Yuri Voinov
+#
+
+# System utilities
+AWK=`which awk`
+GREP=`which grep`
+KILL=`which kill`
+PS=`which ps`
+XARGS=`which xargs`
+
+# Kill all OC4J processes
+$PS -ef | $GREP oc4j | $AWK -e '{print $2}' |$XARGS $KILL -9

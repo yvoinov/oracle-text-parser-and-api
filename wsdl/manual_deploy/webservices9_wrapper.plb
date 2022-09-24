@@ -1,0 +1,71 @@
+CREATE OR REPLACE TYPE CTX_API_THES_TAB AS TABLE OF VARCHAR2(30); 
+/
+show errors
+CREATE OR REPLACE TYPE CTX_API_TERM_TAB AS TABLE OF VARCHAR2(256); 
+/
+show errors
+CREATE OR REPLACE PACKAGE JPUB_PLSQL_WRAPPER wrapped 
+a000000
+ab
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+9
+42d 185
+5jlfbo/EkDHwoLBtLq20tz1xeb0wg+2Jr0gVfHRAv3lPFQekdUZQtI23BavsYi7wht2fl/id
+lezma9ZleSW0PsB+EJq7dhVUvO5Aj42E8zGSO/ASNcnTZ08XQmHL4sPre3D9DfBV3U50+DWM
+d2cmu/MxVqAbLJRtsHZlqLIGQCt2owrzVkJ7q0m0RMVBzB8aleMhlH6tiF8avpSKtOx0YW7n
+n+ZMRNr3pqljYiae5oT4LXJ5uthNrIi/mZ+NCJ55UB47IHzfGlL9UOwNqAi9guW8qUqTi3a+
+b9I22onCYEJYTq8GS60PP8FOLNH0JVJJhGuhaX1yOqefka8C6Mo6Df+Be/4PeykyUf4jALDP
+tAe1n6jAPdsHSyPONkm7G0M=
+
+/
+show errors
+CREATE OR REPLACE PACKAGE BODY JPUB_PLSQL_WRAPPER wrapped 
+a000000
+ab
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+b
+cfb 343
+TwNZtlHR88cvWf0V6zny0hIg2qMwgz2J2UoTfI5AmC5BFW3RZ5BRJQHMH99XvWItAIt8WJM6
+c5pRxssfEt03xYhc8Gaoz9H5csGaFqP56IDcddgZhZY9f4zsM75/Hy6NBux3zT+/faK9DY6i
+Kjkar6XERkWgq85YiaUnTeWCVwg8pgEpQYohB9xtqJFAL2Hv+KQQ6q1AmXRlP9hEIr/OLLaq
+5G5DG97uAZHklFNNepOTPtr70SnKUsusTO19azxikVjEJVBvWu9jFRgtIAm3lhRJDxdjJj0h
+YhsNBb1sU2+fyDevUJ6G33p/VnrCb63R1QzfYEmV6KixiqSxzlg2kYAcreHnuC5O+Le+zHh0
+ezzSjNyElAwblx8u24GtyVEijoLMLBmRUSL+nXjMvBFRevQlk2XMhSo/G7U8olf8QS9RoFZC
+Pd4ihfiKehlaowgYFJ5kmbw9MHTC1gLaRiwhBj9e6KicYSdfNON+nyB+whO+ZKP/NLm5eUgl
+4GHwbHy1FckZgDIrIPtWX4jvUl1wQdqDdwfsHjwVpRnhdnP0Ij6M3OxhbjRpTEFN+fka4tg2
+AK5t+w0mQ9PEr8UKaOY7N8OCl5s9MKLtJit1iziGrT1p1GJLzRNLos2GzBYtsVV0LcZcPcUq
+Cs8d0QUnWLZgSPvgcDp8tEqw7pY0qFHaguKx3n9T/W8dsHxnQ6KiyH+05l81NgTWujRGhmwi
+X5xTT5ymsLiCli30nOMI03hC3sYMamriT7wsyDlJ3oG5KS5w9XRfh3/xRXuhEG6Ndx00GuJm
+tRUuJxOQw3eunr4xPULQBussyb5+Jw==
+
+/
+show errors
+exit

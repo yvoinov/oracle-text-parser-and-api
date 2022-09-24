@@ -1,0 +1,153 @@
+#!/bin/sh
+
+# chkconfig: 345 99 01
+# description: Service starts/stops OC4J processes
+# processname: init.oc4j
+
+#
+# Start/stop OC4J services as part of system startup/shutdown procedure
+# using SMF or traditional rcx.d scripts sequence (Solaris/Linux).
+#
+# Yuri Voinov (C) 2006,2008
+# Thanks Joost Mulders (Sun Microsystems) for idea
+# and initial implementation.
+#
+# ident "@(#)init.ias_wcache   1.9   07/02/17 YV"
+#
+
+#############
+# Variables #
+#############
+
+#
+# ORA_HOME variable for Standalone OC4J.
+# This is substitution variable for legal
+# ORACLE_HOME variable below.
+# DO NOT RENAME THIS VARIABLE!!
+ORA_HOME="/export/home/OraHome3"
+
+#
+# Log file. Default /var/adm/oc4j.log
+#
+LOG="/var/log/oc4j.log"
+
+#
+# OS Commands location variables 
+#
+AWK=`which awk`
+BASENAME=`which basename`
+CUT=`which cut`
+GREP=`which grep`
+KILL=`which kill`
+LS=`which ls`
+PS=`which ps`
+RM=`which rm`
+SU=`which su`
+TOUCH=`which touch`
+UNAME=`which uname`
+WHOAMI=`which whoami`
+XARGS=`which xargs`
+
+OS_NAME=`$UNAME -s|$CUT -f1 -d" "`
+
+# Display variable
+DISPLAY="`hostname`:0.0"
+export DISPLAY
+
+# OS Java home
+JAVA_HOME="/usr"
+export JAVA_HOME
+
+# Linux lock directory
+LOCK_DIR="/var/lock/subsys"
+
+# Script name for Linux up/down workaround
+SVC_SHORT_NAME="oc4j"
+SCRIPT_NAME="init.$SVC_SHORT_NAME"
+
+#
+# Oracle UID get
+#
+ORACLE_UID=`$LS -l $ORA_HOME/bin/oc4j | $AWK '{ print $3 }'`
+
+################
+# Subroutines. #
+################
+
+oc4j_ctl ()
+# OC4J control function
+{
+ cmd=$1
+ orahome=$2
+
+ if [ "$cmd" = "start" ]; then
+  if [ -f $ORA_HOME/bin/oc4j ]; then
+   $SU $ORACLE_UID -c "
+    ORACLE_HOME=$orahome
+    PATH=$orahome/bin:$PATH
+
+    export ORACLE_HOME
+    
+    \$ORACLE_HOME/bin/oc4j -"$cmd" &
+   " >> $LOG
+  else
+   echo "Standalone OC4J not installed or ORA_HOME defined improperly."
+   echo "Standalone OC4J not installed or ORA_HOME defined improperly." >> $LOG
+   exit 1
+  fi
+ else
+  `$PS -ef | $GREP "oc4j -start" | $AWK -e '{print $2}' |$XARGS $KILL -9`>> $LOG 2>&1
+  `$PS -ef | $GREP "oc4j.jar" | $AWK -e '{print $2}' |$XARGS $KILL -9`>> $LOG 2>&1
+ fi
+}
+
+##############
+# Main block #
+##############
+
+ case $1 in
+  stop)
+   CMDLIST=stop
+   ;;
+  start)
+   CMDLIST=start
+   ;;
+  restart)
+   CMDLIST="stop start"
+   ;;
+
+  *)
+   echo "usage $0 <[start|stop|restart>"
+   exit 1
+   ;;
+ esac
+
+ for CMD in $CMDLIST
+ do
+  case $CMD in
+   start)
+   echo "`date` Starting Standalone OC4J..." >> $LOG
+    oc4j_ctl start $ORA_HOME
+    echo "`date` Standalone OC4J started." >> $LOG
+    if [ "$OS_NAME" = "Linux" ]; then
+     # Linux up/down workaround
+     $TOUCH "$LOCK_DIR"/"$SCRIPT_NAME"
+    fi
+   ;;
+  
+   stop)
+    echo "`date` Stopping Standalone OC4J..." >> $LOG
+    oc4j_ctl stop $ORA_HOME
+    echo "`date` Standalone OC4J stopped." >> $LOG
+    if [ "$OS_NAME" = "Linux" ]; then
+     # Linux up/down workaround
+     $RM -f "$LOCK_DIR"/"$SCRIPT_NAME"
+    fi
+   ;;
+
+   *)
+    echo "usage `$BASENAME $0: <[stop|start|restart]>`"
+    exit 1
+   ;; 
+  esac
+ done

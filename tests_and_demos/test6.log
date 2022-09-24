@@ -1,0 +1,98 @@
+SQL> 
+SQL> prompt Èñïîëüçîâàíèå ôóíêöèè get_bt
+Èñïîëüçîâàíèå ôóíêöèè get_bt
+SQL> 
+SQL> select ctx_api.get_bt('êîò') as "Êàòåãîðèÿ" from dual;
+
+Êàòåãîðèÿ                                                                       
+----------------------------------------                                        
+ÊÎØÊÀ                                                                           
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> select ctx_api.get_bt('êðûëî') as "Êàòåãîðèÿ" from dual;
+select ctx_api.get_bt('êðûëî') as "Êàòåãîðèÿ" from dual
+       *
+ERROR at line 1:
+ORA-20152: Phrase "ÊÐÛËÎ" has homographs. 
+ORA-06512: at "SCOTT.CTX_API", line 196 
+ORA-06512: at line 1 
+
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> select ctx_api.get_bt('êðûëî (àâèàöèÿ)') as "Êàòåãîðèÿ" from dual;
+
+Êàòåãîðèÿ                                                                       
+----------------------------------------                                        
+ÏËÀÍÅÐ (×ÀÑÒÈ ËÅÒÀÒÅËÜÍÛÕ ÀÏÏÀÐÀÒÎÂ)                                            
+
+Elapsed: 00:00:00.00
+SQL> 
+SQL> prompt Èñïîëüçîâàíèå ïðîöåäóðû get_bt
+Èñïîëüçîâàíèå ïðîöåäóðû get_bt
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3  begin
+  4    -- Òåðìèí ñ ãîìîãðàôàìè - âûâîäÿòñÿ îáà ñóáäåðåâà BT îäíî çà äðóãèì
+  5    ctx_api.get_bt(xtab, 'àëìàç', 5, 'default');
+  6    for i in 1..xtab.count loop
+  7  	dbms_output.put_line(xtab(i));
+  8    end loop;
+  9  end;
+ 10  /
+ÀËÌÀÇ (ÃÅÎËÎÃÈß)                                                                
+ÌÈÍÅÐÀËÛ                                                                        
+ÌÈÍÅÐÀËÎÃÈß                                                                     
+ÃÅÎËÎÃÈß                                                                        
+ÅÑÒÅÑÒÂÎÇÍÀÍÈÅ                                                                  
+ÍÀÓÊÀ                                                                           
+ÀËÌÀÇ (ÌÅÒÀËËÎÎÁÐÀÁÎÒÊÀ)                                                        
+ÑÒÀÍÊÈ (ÌÅÒÀËËÎÎÁÐÀÁÎÒÊÀ)                                                       
+ÌÅÒÀËËÎÎÁÐÀÁÎÒÊÀ                                                                
+ÏÐÎÌÛØËÅÍÍÎÑÒÜ È ÏÐÎÈÇÂÎÄÑÒÂÎ                                                   
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3  begin
+  4    -- Òåðìèí ñ ãîìîãðàôàìè - êâàëèôèöèðîâàííàÿ ïîäâåòâü îäíîãî èç ïîääåðåâüåâ
+  5    ctx_api.get_bt(xtab, 'àëìàç (ãåîëîãèÿ)', 5, 'default');
+  6    for i in 1..xtab.count loop
+  7  	dbms_output.put_line(xtab(i));
+  8    end loop;
+  9  end;
+ 10  /
+ÌÈÍÅÐÀËÛ                                                                        
+ÌÈÍÅÐÀËÎÃÈß                                                                     
+ÃÅÎËÎÃÈß                                                                        
+ÅÑÒÅÑÒÂÎÇÍÀÍÈÅ                                                                  
+ÍÀÓÊÀ                                                                           
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.00
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3  begin
+  4    -- Òåðìèí ñ ãîìîãðàôàìè - âòîðàÿ êâàëèôèöèðîâàííàÿ ïîäâåòâü
+  5    ctx_api.get_bt(xtab, 'àëìàç (ìåòàëëîîáðàáîòêà)', 5, 'default');
+  6    for i in 1..xtab.count loop
+  7  	dbms_output.put_line(xtab(i));
+  8    end loop;
+  9  end;
+ 10  /
+ÑÒÀÍÊÈ (ÌÅÒÀËËÎÎÁÐÀÁÎÒÊÀ)                                                       
+ÌÅÒÀËËÎÎÁÐÀÁÎÒÊÀ                                                                
+ÏÐÎÌÛØËÅÍÍÎÑÒÜ È ÏÐÎÈÇÂÎÄÑÒÂÎ                                                   
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.00
+SQL> 
+SQL> spool off

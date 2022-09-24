@@ -1,0 +1,28 @@
+SQL> 
+SQL> set serveroutput on
+SQL> 
+SQL> declare
+  2   result number;
+  3  begin
+  4   result := ctx_api.search_expansion_level('äèíîçàâð');
+  5   dbms_output.put_line(result);
+  6  end;
+  7  /
+2                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> declare
+  2   result varchar2(255);
+  3  begin
+  4   result := ctx_api.search_expansion_term('äèíîçàâð');
+  5   dbms_output.put_line(result);
+  6  end;
+  7  /
+ÏÀËÅÎÇÎÎËÎÃÈß                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> spool off

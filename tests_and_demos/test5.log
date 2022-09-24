@@ -1,0 +1,42 @@
+SQL> 
+SQL> set serveroutput on
+SQL> 
+SQL> declare
+  2   v_hom ctx_api.term_tab;
+  3   i pls_integer;
+  4  begin
+  5   ctx_api.get_qualifiers(v_hom,'ÿêîðü','default');
+  6   for i in v_hom.first..v_hom.last loop
+  7    dbms_output.put_line(v_hom(i));
+  8   end loop;
+  9  end;
+ 10  /
+ÔËÎÒ                                                                            
+ÝËÅÊÒÐÎÒÅÕÍÈÊÀ                                                                  
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.11
+SQL> 
+SQL> declare
+  2   v_hom ctx_api.term_tab;
+  3   i pls_integer;
+  4  begin
+  5   ctx_api.get_qualifiers(v_hom,'âàðêàëîñü','default');
+  6   for i in v_hom.first..v_hom.last loop
+  7    dbms_output.put_line(v_hom(i));
+  8   end loop;
+  9  end;
+ 10  /
+declare
+*
+ERROR at line 1:
+ORA-20151: Phrase "ÂÀÐÊÀËÎÑÜ" not exist or specified thesaurus "DEFAULT" not 
+loaded. 
+ORA-06512: at "SCOTT.CTX_API", line 166 
+ORA-06512: at line 5 
+
+
+Elapsed: 00:00:00.11
+SQL> 
+SQL> spool off

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<SOAP-ENV:Body>
+<ns1:searchStringParserResponse xmlns:ns1="http://yvoinov.com/ctx_api.wsdl" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<return xsi:type="xsd:string">nt({сунны},3) and nt({молитва},3) and nt({бог},3)</return>
+</ns1:searchStringParserResponse>
+
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

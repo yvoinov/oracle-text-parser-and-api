@@ -1,0 +1,53 @@
+Features   of   supporting   a  WSDL  service  deployed  via
+Standalone OC4J.
+------------------------------------------------------------
+
+Note:   When   re-creating   a  user,  it  is  not  required
+reinstalling  OC4J  or  redeploying  WSDL.  It  is enough to
+recreate  the  user  schema,  install in it CTX_API and load
+wrapper script webservices9_wrapper.sql
+
+Attention!  If  the  WSDL  has  already  been deployed, when
+rebuilding  the server code generation phase does not create
+a  user  PL/SQL  wrapper  again. wrapper is generated in the
+composition jar module and must be extracted from there with
+a   zip  archiver.  By  default  on  UNIX  jar  file  before
+deployment generated in /tmp .
+
+Note: OC4J 10.1.3.3.0 has an issue with automatic deployment
+of  the  WSDL  CTX_API  service.  Automatic  deployment only
+happens in OC4J 10.1.3.2.0. Sometimes the problem is related
+with non-release of the default ORMI port. Necessary restart
+the  server  to  resolve  this  issue.  (default port number
+23791)
+
+Manual deployment of WSDL application on standalone OC4J
+--------------------------------------------------------
+
+1. Install OC4J.
+2. Execute predeploy.sh script
+3.  Perform preparatory steps (creating the owner schema DB,
+installation   in   the   CTX   API   schema,  configuration
+config.xml, configuring data-sources.xml)
+4. Generate server code with gen_srv_code.sh script
+5.  Unpack  using  unzip jar file (located inside ear file),
+extract scripts from it:
+
+   webservices9_wrapper.sql 
+   webservices9_dropper.sql 
+
+   and execute them in the API owner schema.
+6.  Login  to  em  console  OC4J  (http://host:8888/em) with
+username oc4jadmin and the password set in step 2.
+7. Deploy the application generated in step 4.
+8.  Edit  the  default-web-site.xml  of the OC4J instance by
+explicitly  specifying  (or  by changing default http) ajp13
+protocol for port 8888. (config/oc4j directory).
+9.  Modify  Apache's  mod_oc4j.conf  file  as  shown  in the
+mod_oc4j.conf file of this archive (config/ohs directory).
+10.  Activate  automatic  launch  of OC4J and restart Apache
+(OHS) and OC4J.
+
+-----------------------------------------------------------
+- Copyright (C) 2007,2008 Yuri Voinov                     -
+-----------------------------------------------------------

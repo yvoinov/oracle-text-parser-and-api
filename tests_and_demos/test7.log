@@ -1,0 +1,118 @@
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_nt(xtab,'ìèôîëîãèÿ',1,'default');
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' NT''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('NT('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 36 NT's                                                                     
+NT(1)=ÌÈÔÎËÎÃÅÌÀ                                                                
+NT(2)=ÒÅÎÃÎÍÈß                                                                  
+NT(3)=ÝÂÃÅÌÅÐÈÇÌ                                                                
+NT(4)=ÌÈÔÈ×ÅÑÊÈÅ ÑÓÙÅÑÒÂÀ                                                       
+NT(5)=ÑÊÀÇÎ×ÍÛÅ ÑÓÙÅÑÒÂÀ                                                        
+NT(6)=ÊÓËÜÒÓÐÍÛÉ ÃÅÐÎÉ                                                          
+NT(7)=ÀÖÒÅÊÑÊÀß ÌÈÔÎËÎÃÈß                                                       
+NT(8)=ÁÐÈÒÀÍÑÊÀß ÌÈÔÎËÎÃÈß                                                      
+NT(9)=ÂÀËÈÉÑÊÀß ÌÈÔÎËÎÃÈß                                                       
+NT(10)=ÃÐÅ×ÅÑÊÀß ÌÈÔÎËÎÃÈß                                                      
+NT(11)=ÄÐÅÂÍÅÀÐÀÁÑÊÀß ÌÈÔÎËÎÃÈß                                                 
+NT(12)=ÄÐÅÂÍÅÍÓÁÈÉÑÊÀß ÌÈÔÎËÎÃÈß                                                
+NT(13)=ÄÐÅÂÍÅÑÅÌÈÒÑÊÀß ÌÈÔÎËÎÃÈß                                                
+NT(14)=ÄÐÅÂÍÅÅÃÈÏÅÒÑÊÀß ÌÈÔÎËÎÃÈß                                               
+NT(15)=ÐÈÌÑÊÀß ÌÈÔÎËÎÃÈß                                                        
+NT(16)=ÔÈÍÑÊÀß ÌÈÔÎËÎÃÈß                                                        
+NT(17)=ÌÈÔÎËÎÃÈß ÊÅ×ÓÀ                                                          
+NT(18)=ÌÈÔÎËÎÃÈß ÏÐÓÑÑÎÂ                                                        
+NT(19)=ÑÊÈÔÑÊÀß ÌÈÔÎËÎÃÈß                                                       
+NT(20)=ÑÊÀÍÄÈÍÀÂÑÊÀß ÌÈÔÎËÎÃÈß                                                  
+NT(21)=ÂÅÄÈ×ÅÑÊÀß ÌÈÔÎËÎÃÈß                                                     
+NT(22)=ÃÅÐÌÀÍÑÊÀß ÌÈÔÎËÎÃÈß                                                     
+NT(23)=ÑËÀÂßÍÑÊÀß ÌÈÔÎËÎÃÈß                                                     
+NT(24)=ÔÈÍÈÊÈÉÑÊÀß ÌÈÔÎËÎÃÈß                                                    
+NT(25)=ÔÐÈÃÈÉÑÊÀß ÌÈÔÎËÎÃÈß                                                     
+NT(26)=ÕÅÒÒÑÊÀß ÌÈÔÎËÎÃÈß                                                       
+NT(27)=ËÈÒÎÂÑÊÀß ÌÈÔÎËÎÃÈß                                                      
+NT(28)=ÒÈÁÅÒÑÊÀß ÌÈÔÎËÎÃÈß                                                      
+NT(29)=ÌÈÔÎËÎÃÈß ÑÅÂÅÐÎÀÌÅÐÈÊÀÍÑÊÈÕ ÈÍÄÅÉÖÅÂ                                    
+NT(30)=ßÏÎÍÑÊÀß ÌÈÔÎËÎÃÈß                                                       
+NT(31)=ÄÐÅÂÍÅÊÈÒÀÉÑÊÀß ÌÈÔÎËÎÃÈß                                                
+NT(32)=ÄÐÅÂÍÅÈÍÄÈÉÑÊÀß ÌÈÔÎËÎÃÈß                                                
+NT(33)=ÕÓÐÐÈÒÑÊÀß ÌÈÔÎËÎÃÈß                                                     
+NT(34)=ÝÒÐÓÑÑÊÀß ÌÈÔÎËÎÃÈß                                                      
+NT(35)=ØÓÌÅÐÎ-ÀÊÊÀÄÑÊÀß ÌÈÔÎËÎÃÈß                                               
+NT(36)=ÏÅÐÑÈÄÑÊÀß ÌÈÔÎËÎÃÈß                                                     
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.11
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    -- Åñëè òåðìèí ÿâëÿåòñÿ íèæíèì óðîâíåì, çíà÷åíèå p_level èãíîðèðóåòñÿ
+  6    ctx_api.get_nt(xtab,'ñóííû',1,'default');  -- Íåò NT, íèæíèé óðîâåíü
+  7    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' NT''s'); end if;
+  8    for i in 1..xtab.last loop
+  9  	 dbms_output.put_line('NT('||i||')='||xtab(i));
+ 10    end loop;
+ 11  end;
+ 12  /
+Has 1 NT's                                                                      
+NT(1)=ÑÓÍÍÛ                                                                     
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_nt(xtab,'ïëàíåð',1,'default');  -- Íåò NT, íèæíèé óðîâåíü
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' NT''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('NT('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+declare
+*
+ERROR at line 1:
+ORA-20152: Phrase "ÏËÀÍÅÐ" has homographs. 
+ORA-06512: at "SCOTT.CTX_API", line 255 
+ORA-06512: at line 5 
+
+
+Elapsed: 00:00:00.00
+SQL> 
+SQL> declare
+  2    xtab ctx_api.term_tab;
+  3    i number;
+  4  begin
+  5    ctx_api.get_nt(xtab,'ïëàíåð (÷àñòè ëåòàòåëüíûõ àïïàðàòîâ)',1,'default');  -- Íåò NT, íèæíèé óðîâåíü
+  6    if xtab.count > 0 then dbms_output.put_line('Has '||xtab.count||' NT''s'); end if;
+  7    for i in 1..xtab.last loop
+  8  	 dbms_output.put_line('NT('||i||')='||xtab(i));
+  9    end loop;
+ 10  end;
+ 11  /
+Has 6 NT's                                                                      
+NT(1)=ÊÐÛËÎ (ÀÂÈÀÖÈß)                                                           
+NT(2)=ÔÞÇÅËßÆ                                                                   
+NT(3)=ÖÅÍÒÐÎÏËÀÍ                                                                
+NT(4)=ÌÈÄÅËÜ                                                                    
+NT(5)=ËÎÍÆÅÐÎÍ (ÀÂÈÀÖÈß)                                                        
+NT(6)=ÕÂÎÑÒÎÂÎÅ ÎÏÅÐÅÍÈÅ                                                        
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.00
+SQL> 
+SQL> spool off

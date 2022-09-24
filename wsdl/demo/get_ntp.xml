@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<SOAP-ENV:Body>
+<ns1:getNtpResponse xmlns:ns1="http://yvoinov.com/ctx_api.wsdl" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<return xmlns:ns2="http://yvoinov.com/ctx_api.xsd" xsi:type="ns2:yvoinov_com_ctx_apiUser_getNtp_Out">
+<pntpOut xsi:type="ns2:yvoinov_com_CtxApiTermTab">
+<array xmlns:ns3="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns3:Array" ns3:arrayType="xsd:string[8]">
+<item xsi:type="xsd:string">лнкейскъпмне пюяяеъмхе</item>
+<item xsi:type="xsd:string">дхтпюйжхъ вюярхж</item>
+<item xsi:type="xsd:string">кюгеп мю йпюяхреке</item>
+<item xsi:type="xsd:string">пюярбнпемхе (тхгхйю)</item>
+<item xsi:type="xsd:string">лнмнлнкейскъпмши якни</item>
+<item xsi:type="xsd:string">ярюрхвеяйне дюбкемхе</item>
+<item xsi:type="xsd:string">брнпхвмне хгксвемхе</item>
+<item xsi:type="xsd:string">ярюрхвеяйне пюбмнбеяхе</item>
+</array>
+</pntpOut>
+</return>
+</ns1:getNtpResponse>
+
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,49 @@
+SQL> 
+SQL> set serveroutput on
+SQL> 
+SQL> declare
+  2   v_hom boolean;
+  3  begin
+  4   v_hom := ctx_api.has_homographs('ÿךמנü');
+  5   if v_hom then dbms_output.put_line('Ãמלמדנאפû וסעü');
+  6  	       else dbms_output.put_line('Ãמלמדנאפמג ÍÅÒ');
+  7   end if;
+  8  end;
+  9  /
+Ãמלמדנאפû וסעü                                                                  
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.00
+SQL> 
+SQL> declare
+  2   v_hom boolean;
+  3  begin
+  4   v_hom := ctx_api.has_homographs('ÿךמנü (פכמע)');
+  5   if v_hom then dbms_output.put_line('Ãמלמדנאפû וסעü');
+  6  	       else dbms_output.put_line('Ãמלמדנאפמג ÍÅÒ');
+  7   end if;
+  8  end;
+  9  /
+Ãמלמדנאפû וסעü                                                                  
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> declare
+  2   v_hom boolean;
+  3  begin
+  4   v_hom := ctx_api.has_homographs('חלוט');
+  5   if v_hom then dbms_output.put_line('Ãמלמדנאפû וסעü');
+  6  	       else dbms_output.put_line('Ãמלמדנאפמג ÍÅÒ');
+  7   end if;
+  8  end;
+  9  /
+Ãמלמדנאפמג ÍÅÒ                                                                  
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> spool off

@@ -1,0 +1,19 @@
+SQL> 
+SQL> declare
+  2   result boolean;
+  3  begin
+  4   dbms_output.put_line('Проверка существования отношений BT/NT/RT/SYN для заданной фразы');
+  5  
+  6   result := ctx_api.phrase_relation_exists('котопес');
+  7   if (result) then dbms_output.put_line('Отношения есть');
+  8  		  else dbms_output.put_line('Отношений НЕТ');
+  9   end if;
+ 10  end;
+ 11  /
+Проверка существования отношений BT/NT/RT/SYN для заданной фразы                
+Отношения есть                                                                  
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> spool off

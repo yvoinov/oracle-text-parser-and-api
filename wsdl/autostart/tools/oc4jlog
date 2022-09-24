@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Show startup OC4J services log
+# Y.Voinov (C) 2007,2009
+LOG="/var/log/oc4j.log"
+
+# Redirect errors to /dev/null
+tail -f $LOG 2>/dev/null
+
+retcode=`echo $?`
+if [ ! -z "$retcode" ]; then
+ echo "ERROR: Cannot read input. Log file not found."
+ exit 1
+fi

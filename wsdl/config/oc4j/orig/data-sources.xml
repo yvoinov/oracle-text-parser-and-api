@@ -1,0 +1,81 @@
+<?xml version="1.0" standalone='yes'?>
+
+<data-sources 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/data-sources-10_1.xsd"
+  schema-major-version="10"
+  schema-minor-version="1"
+>
+
+  <!-- The following is an example of a data source whose connection factory emulates XA behavior. -->
+  <managed-data-source name="OracleDS"
+    connection-pool-name="Example Connection Pool"
+    jndi-name="jdbc/OracleDS"/>
+
+  <connection-pool name="Example Connection Pool">
+    <connection-factory factory-class="oracle.jdbc.pool.OracleDataSource"
+      user="scott"
+      password="tiger"
+      url="jdbc:oracle:thin:@//localhost:1521/ORCL">
+    </connection-factory>
+  </connection-pool>
+  
+<!-- The following is an example of data source whose connection factory
+    does not emulate XA behavior. It includes an xa-recovery-config
+    that can be specified in order to override the runtime password-credential
+    in the case where a recover scan is necessary 
+  -->
+  <!--
+  <managed-data-source name='NonEmulatedDS'
+    connection-pool-name='NonEmulated Connection Pool'
+    jndi-name='jdbc/NonEmulatedDS'/>
+
+  <connection-pool name='NonEmulated Connection Pool'>
+    <connection-factory factory-class='oracle.jdbc.xa.client.OracleXADataSource'
+      user='foo'
+      password='bar'
+      url="jdbc:oracle:thin:@//localhost:1521/ORCL">
+      <xa-recovery-config>
+        <password-credential>
+          <username>system</username>
+          <password>manager</password>
+        </password-credential>
+      </xa-recovery-config>
+    </connection-factory>
+  </connection-pool>
+  -->
+
+  <!-- The following is an example showing the use of the connection pool attributes. -->
+  <!--
+  <connection-pool name='NonEmulated Connection Pool'
+    min-connections='0'
+    max-connections='0'
+    initial-limit='0'
+    used-connection-wait-timeout='60'
+    inactivity-timeout='60'
+    connection-retry-interval='1'
+    max-connect-attempts='3'
+    validate-connection='false'
+    num-cached-statements='0'
+    time-to-live-timeout='-1'
+    abandoned-connection-timeout='-1'
+    property-check-interval='900'>
+    
+    <connection-factory factory-class='oracle.jdbc.xa.client.OracleDataSource'
+      user='foo'
+      password='bar'
+      url="jdbc:oracle:thin:@//localhost:1521/ORCL">
+    </connection-factory>
+  </connection-pool>
+  -->
+
+  <!-- An example showing the use of password indirection.
+  <managed-data-source name='PasswordIndirection'
+    connection-pool-name='NonEmulated Connection Pool'
+    jndi-name='jdbc/PasswordIndirection'
+    user='foo'
+    password='->foo'/>
+  -->
+
+</data-sources>
+

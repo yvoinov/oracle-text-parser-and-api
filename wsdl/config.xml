@@ -1,0 +1,26 @@
+<web-service>
+        <display-name>CTXAPI Web Service</display-name>
+        <description>Thesauri API Web Service</description>
+        <destination-path>./ctx_api.ear</destination-path>
+        <temporary-directory>/tmp</temporary-directory>
+        <context>/wsdl</context>
+        <stateless-stored-procedure-java-service>
+                <jar-generation>
+                        <schema>wsdl_own/wsdl_own</schema>
+                        <db-url>jdbc:oracle:thin:@localhost:1521:SUN11</db-url>
+                        <prefix>yvoinov.com</prefix>
+                        <db-pkg-name>ctx_api</db-pkg-name>
+                </jar-generation>
+                <uri>/ctxapi</uri>
+                <database-JNDI-name>jdbc/OracleDS</database-JNDI-name>
+        </stateless-stored-procedure-java-service>
+        <wsdl-gen>
+                <wsdl-dir>wsdl</wsdl-dir>
+                <option name="force">true</option>
+                <option name="httpServerURL">http://localhost:8888</option>
+        </wsdl-gen>
+        <proxy-gen>
+                <proxy-dir>proxy</proxy-dir>
+                <option name="include-source">true</option>
+        </proxy-gen>
+</web-service>

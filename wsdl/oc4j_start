@@ -1,0 +1,23 @@
+#!/usr/bin/sh
+
+#
+# OC4J startup script
+# Version 1.0.0.5
+# Copyright (C) 2007,2009 Yuri Voinov
+#
+
+JAVA_HOME="/usr"
+export JAVA_HOME
+ORACLE_HOME_OLD="$ORACLE_HOME"
+export ORACLE_HOME_OLD
+ORACLE_HOME="/export/home/OraHome3"
+export ORACLE_HOME
+DISPLAY="`hostname`:0.0"
+export DISPLAY
+
+# Start OC4J as nohup process 
+cd $ORACLE_HOME/bin
+oc4j -start &
+
+ORACLE_HOME=$ORACLE_HOME_OLD
+export ORACLE_HOME

@@ -1,0 +1,16 @@
+
+CTX_API.TERM_COUNTER('DEFAULT')                                                 
+-------------------------------                                                 
+                          68971                                                 
+
+
+CTX_API.TERM_COUNTER('ENGLISH')                                                 
+-------------------------------                                                 
+                          86886                                                 
+
+Has 2 thesauri                                                                  
+Thes 1: ENGLISH                                                                 
+Thes 2: DEFAULT                                                                 
+
+PL/SQL procedure successfully completed.
+

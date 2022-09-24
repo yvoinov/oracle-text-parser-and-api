@@ -1,0 +1,101 @@
+SQL> 
+SQL> col Parsed format a80
+SQL> rem
+SQL> rem Default mode call
+SQL> rem For all parameters see documentation or package spec
+SQL> rem
+SQL> rem Тест 1. Вызов парсера по умолчанию, режим KEYWORD
+SQL> select ctx_api.search_string_parser('сунны алмаз молитва животные бог пассатижи','keyword') as "Parsed"
+  2  from dual;
+
+Parsed                                                                          
+--------------------------------------------------------------------------------
+{сунны} and {алмаз} and {молитва} and {животные} and {бог} and {пассатижи}      
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> rem Тест 2. Вызов парсера по умолчанию, режим CONCEPT
+SQL> select ctx_api.search_string_parser ('сунны алмаз молитва животные бог пассатижи','concept') as "Parsed"
+  2  from dual;
+
+Parsed                                                                          
+--------------------------------------------------------------------------------
+about({сунны}) and about({алмаз}) and about({молитва}) and about({животные}) and
+ about({бог}) and about({пассатижи})                                            
+                                                                                
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> rem Тест 3. Тест уточнения тематики - вызов из SQL
+SQL> select ctx_api.search_string_parser ('сунны алмаз молитва животные бог пассатижи','concept','and','nt',1,'default',1) as "Parsed"
+  2  from dual;
+
+Parsed                                                                          
+--------------------------------------------------------------------------------
+nt({сунны}) and nt({молитва}) and nt({бог})                                     
+
+Elapsed: 00:00:00.16
+SQL> 
+SQL> rem Тест 4. Тест уточнения тематики - вызов из PL/SQL
+SQL> declare
+  2    v_out varchar2(32767);
+  3  begin
+  4   v_out := ctx_api.search_string_parser('сунны алмаз молитва животные бог пассатижи','concept', p_refine_on=>ctx_api.c_refine_on);
+  5   dbms_output.put_line(v_out);
+  6  end;
+  7  /
+about({сунны}) and about({молитва}) and about({бог})                            
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.17
+SQL> 
+SQL> rem Тест 5. Вызов парсера по умолчанию, PL/SQL, режим CONCEPT, уточнение включено
+SQL> declare
+  2    v_out varchar2(32767);
+  3  begin
+  4   v_out := ctx_api.search_string_parser('сунны пассатижи пила пинцет тиски','concept', p_refine_on=>ctx_api.c_refine_on);
+  5   dbms_output.put_line(v_out);
+  6  end;
+  7  /
+about({пассатижи}) and about({пила}) and about({пинцет}) and about({тиски})     
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.05
+SQL> 
+SQL> rem Тест 6. Проверка корректности действия уточнения тематики - все слова из одной категории.
+SQL> declare
+  2    v_out varchar2(32767);
+  3  begin
+  4   v_out := ctx_api.search_string_parser('сунны молитва бог','concept', p_refine_on=>ctx_api.c_refine_on);
+  5   dbms_output.put_line(v_out);
+  6  end;
+  7  /
+about({сунны}) and about({молитва}) and about({бог})                            
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.06
+SQL> 
+SQL> rem Тест 7. Проверка корректности действия уточнения категории слова в иерархическом расширительном запросе
+SQL> rem	 NT/BT. При включении уточнения категории (p_exp_detail_on) значение параметра p_expansion_level
+SQL> rem	 ИГНОРИРУЕТСЯ!
+SQL> declare
+  2    v_out varchar2(32767);
+  3  begin
+  4   v_out := ctx_api.search_string_parser('сунны молитва бог динозавр','concept',
+  5  					      p_query_opt=>ctx_api.c_query_op_nt,
+  6  					      p_refine_on=>ctx_api.c_refine_off,
+  7  					      p_exp_detail_on=>ctx_api.c_exp_detail_on);
+  8   dbms_output.put_line(v_out);
+  9  end;
+ 10  /
+nt({сунны},1) and nt({молитва},1) and nt({бог},1) and nt({динозавр},2)          
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.22
+SQL> 
+SQL> col Parsed format a80
+SQL> spool off
