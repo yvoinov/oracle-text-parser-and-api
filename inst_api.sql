@@ -9,7 +9,7 @@ rem -- MAXIMUM_ORACLE_VERSION: 11.x.x.x                                     --
 rem -- PLATFORM_IDENTIFICATION: Generic                                     --
 rem --                                                                      --
 rem -- IDENTIFICATION: inst_api.sql                                         --
-rem -- DESCRIPTION: This script installs CTX API into specified existin     --
+rem -- DESCRIPTION: This script installs CTX API into specified existing    --
 rem --              schema. Must be run as SYS user with SYSDBA priv.       --
 rem --              This script are interactive. Command-line version is    --
 rem --              inst_parser_c.sql                                       --
