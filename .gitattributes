@@ -1,2 +1,8 @@
-* text=auto
-* text eol=lf
+*.bat text eol=crlf
+*.sh text eol=lf
+*.sql text eol=lf
+*.pls text eol=lf
+*.plb text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+
